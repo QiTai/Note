@@ -12,6 +12,7 @@
      * inno
    + Redis
    + Memcache
+   + ORM
  - work
    + pay过程中设计的数据库的表
    + payController中的pay函数的beforePay()具体细节
