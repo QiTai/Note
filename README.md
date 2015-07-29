@@ -10,8 +10,9 @@
    + Mysql
      * bebel
      * inno
-   + Redis
-   + Memcache
+   + 内存数据库 [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
+     * Redis
+     * Memcache
    + ORM
  - work
    + pay过程中设计的数据库的表
