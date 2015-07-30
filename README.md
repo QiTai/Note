@@ -3,6 +3,7 @@
  + ElasticSearch 
    * [Optimizing MongoDB Queries with       Elasticsearch](https://www.compose.io/articles/optimizing-mongodb-queries-with-elasticsearch/)
  + MongoDB
+   * [MongoDB and MySQL Compared](https://www.mongodb.com/compare/mongodb-mysql)
  + Mysql
  + 内存数据库
    * Redis
