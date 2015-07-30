@@ -9,7 +9,7 @@
    * Memcached
    * [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
    * [Why Redis beats Memcached for caching](http://www.infoworld.com/article/2825890/application-development/why-redis-beats-memcached-for-caching.html)
- + ORM
+ + ORM : Object Relational Mapping对象关系映射
 
 
 
