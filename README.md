@@ -1,20 +1,18 @@
 # note
  + [正则表达式神奇网站](http://www.regexper.com)
+ + ElasticSearch : [Optimizing MongoDB Queries with       Elasticsearch](https://www.compose.io/articles/optimizing-mongodb-queries-with-elasticsearch/)
+ + MongoDB
+ + Mysql
+ + 内存数据库 : [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
+   * Redis
+   * Memcached
+ + ORM
 
 
 
 
 # to do
  - knowledge 
-   + Elastic Search
-   + MongoDB
-   + Mysql
-     * bebel
-     * inno
-   + 内存数据库 [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
-     * Redis
-     * Memcache
-   + ORM
  - work
    + pay过程中设计的数据库的表
    + payController中的pay函数的beforePay()具体细节
