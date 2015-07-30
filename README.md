@@ -1,11 +1,14 @@
 # note
  + [正则表达式神奇网站](http://www.regexper.com)
- + ElasticSearch : [Optimizing MongoDB Queries with       Elasticsearch](https://www.compose.io/articles/optimizing-mongodb-queries-with-elasticsearch/)
+ + ElasticSearch 
+   * [Optimizing MongoDB Queries with       Elasticsearch](https://www.compose.io/articles/optimizing-mongodb-queries-with-elasticsearch/)
  + MongoDB
  + Mysql
- + 内存数据库 : [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
+ + 内存数据库
    * Redis
    * Memcached
+   * [关于 redis、memcache、mongoDB 的对比](http://yang.u85.us/memcache_redis_mongodb.pdf)
+   * [Why Redis beats Memcached for caching](http://www.infoworld.com/article/2825890/application-development/why-redis-beats-memcached-for-caching.html)
  + ORM
 
 
