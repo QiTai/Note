@@ -12,6 +12,7 @@
    * [Why Redis beats Memcached for caching](http://www.infoworld.com/article/2825890/application-development/why-redis-beats-memcached-for-caching.html)
  + ORM : Object Relational Mapping对象关系映射
  + [深入理解javascript](http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html)
+ + [Things Everyone Should Do: Code Review](http://goodmath.scientopia.org/2011/07/06/things-everyone-should-do-code-review/)
 
 
 
