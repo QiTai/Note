@@ -7,7 +7,10 @@
 
 # Website
 ## Code Style
-  + [Things Everyone Should Do: Code Review](http://goodmath.scientopia.org/2011/07/06/things-everyone-should-do-code-review/)
+ + [Things Everyone Should Do: Code Review](http://goodmath.scientopia.org/2011/07/06/things-everyone-should-do-code-review/)
+
+## Algorithm & Data Structure
+ + [数据结构算法书籍](http://blog.csdn.net/simanstar/article/details/19824147) 
 
 ## Programming Language
  + [深入理解javascript](http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html)
