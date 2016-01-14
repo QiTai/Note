@@ -1,3 +1,6 @@
+# To Do
+# Hadoop
+
 # Website
 ## Code Style
   + [Things Everyone Should Do: Code Review](http://goodmath.scientopia.org/2011/07/06/things-everyone-should-do-code-review/)
