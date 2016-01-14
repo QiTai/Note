@@ -181,4 +181,17 @@ class Data {
 
 };
 
+//-----------------Singleton-----------------
+class Singleton {
+public:
+	static Singleton &GetInstance() {
+		static Singleton instance;
+		return instance;
+	}
+protected:
+	Singleton();
+	~Singleton();
+};
+Singleton& si = Singleton::GetInstance();
+
 ```
