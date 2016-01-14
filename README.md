@@ -16,6 +16,7 @@
  + [深入理解javascript](http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html)
  + [The Definitive C++ Book Guide and List](http://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list)
  + [Hoogle](https://www.haskell.org/hoogle/)
+ + [编译型语言,解释型语言,静态类型语言,动态类型语言](http://www.tuicool.com/articles/EJbQ32)
  
 ## Database
  + ElasticSearch 
