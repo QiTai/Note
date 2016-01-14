@@ -1,5 +1,9 @@
-# To Do
- + Hadoop
+# Reading
+ + Hadoop in Action
+
+# To Read
+ + Operating System Concepts
+ + More Effective C++/ Effective C++(twice)
 
 # Website
 ## Code Style
