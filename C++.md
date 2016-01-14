@@ -165,4 +165,20 @@ int Item::addVal(const Item& a, const Item& b) const {
 static const int arr[] = {16,2,77,29};
 vector<int> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
 
+//--------------Self-reference--------------
+void f(Date &d) {
+	//...
+	d.add_day(1).add_month(1).add_year(1);
+	//...
+}
+
+class Data {
+	//...
+	Data& add_day(int n) {
+		//self-reference
+		return *this;
+	}
+
+};
+
 ```
