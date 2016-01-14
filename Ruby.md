@@ -6,7 +6,8 @@
  + [Understanding Ruby Singleton Classes](http://www.devalot.com/articles/2008/09/ruby-singleton)
  
 # Grammar
-```
+
+```Ruby
 //subclass can invoke parent behavior via super, like:
 def bark
 	super + ",GROWL"
