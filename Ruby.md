@@ -4,6 +4,10 @@
  + [to_s vs. inspect](http://rubylution.herokuapp.com/topics/19)
  + [Ruby send vs. \_send\_](http://stackoverflow.com/questions/4658269/ruby-send-vs-send)
  + [Understanding Ruby Singleton Classes](http://www.devalot.com/articles/2008/09/ruby-singleton)
+ + Ruby是强类型，动态语言，动态类型语言
+ + puts,gets也是有对象的，对象是self
+ + The most important thing to take away from all of this is that every method is being done by some object, even if it doesn't have a dot in front it. If you understand that, then you're all set
+ + Array的each do方法，是Ruby炫酷之一
  
 # Grammar
 
