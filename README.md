@@ -6,6 +6,9 @@
  + More Effective C++/ Effective C++(twice)
 
 # Website
+## Markdown
+ + [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+ 
 ## Code Style
  + [Things Everyone Should Do: Code Review](http://goodmath.scientopia.org/2011/07/06/things-everyone-should-do-code-review/)
 
