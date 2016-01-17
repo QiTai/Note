@@ -1,5 +1,7 @@
 #Note
-
+ + Reverting Working Copy to Most Recent Commit
+  * git reset --hard HEAD
+  * where HEAD is the last commit in your current branch. Refer to [Revert&Reset](http://stackoverflow.com/questions/4114095/revert-git-repo-to-a-previous-commit)
  + 用户信息
   * git config --global user.name "QiTai"
   * git config --glabal user.email "qitai1993@163.com"
