@@ -160,7 +160,7 @@ class Matrix {
 		+ RAII
 		+ Not just memory: all resources
 	* Use "Smart pointers"
-		+ BUt they are still pointers
+		+ But they are still pointers
 	* Plug in a garbage collector
 		+ For "litter collection"
 		+ C++11 specifies a GC interface
