@@ -23,6 +23,8 @@ void f(int n, int x) {
 ```
 + `shared_ptr` provides a form of garbage collection
 	* But I'm not sharing anything!
+
+
 + A `std::unique_ptr` releases its object at when it goes out of scope
 ```cpp
 void f(int n, int x) {
