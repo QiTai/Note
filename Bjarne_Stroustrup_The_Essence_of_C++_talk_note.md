@@ -102,6 +102,68 @@ void operator+(const M&, const M&, M& res);
 M m;
 operator+(m1, m2, m);	// ugly: We are regressing towards assembly code
 ```
++ Return an object!
+	* `M operator+(const M&, const M&)`
+	* How?
+		+ Copies are expensive
+	* Tricks to avoid copying are brittle
+	* Tricks to avoid copying are not general
++ **Return a handle**
+	* Simple and cheap!
 
+### Move Semantics ###
++ Return a Matrix
+```cpp
+Matrix operator+(const Matrix& a, const Matrix& b) {
+	Matrix r;
+	// copy a[i] + b[i] into r[i] for each i
+	return r;
+} 
+Matrix res = a + b;
+```
++ Define move a construtor for Matrix
+	+ don't copy, "steal the representation"
+
++ Direct support in C++ 11: **Move Constructor** *To devel into*
+```cpp
+class Matrix {
+	Representation rep;
+	//...
+	Matrix(Matrix&& a) {		// move constructor
+		rep = a.rep;		// *this gets a's element
+		a.rep = { }		// a becomes the empty Matrix
+	}
+};
+Matrix res = a + b;
+```
+
++ Often, you can avoid writing copy and move operations	
+	* Easily avoid
+```cpp
+class Matrix {
+	vector<double> elem; 	// elements here
+	//... matrix access ...
+};
+```
+
++ Matrix just "inherit" resource management from vector
++ Copy and a move operations can often be implicitly generate from members
+	* Good copy and move operations
+	* from the standard library
+
+### Garbage Collection ###
++ GC is neither general nor ideal
++ Apply these techniques in order:
+	* Store data in containers
+		+ The semantics of the fundemental abstraction is reflected in the interface
+	* Manage all resources with resource handles
+		+ RAII
+		+ Not just memory: all resources
+	* Use "Smart pointers"
+		+ BUt they are still pointers
+	* Plug in a garbage collector
+		+ For "litter collection"
+		+ C++11 specifies a GC interface
+		+ Can still leak non-memory resources
 
 	
