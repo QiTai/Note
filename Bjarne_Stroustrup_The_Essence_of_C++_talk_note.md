@@ -19,4 +19,19 @@ void f(int n, int x) {
 	if (x < 100) throw std::runtime_error{"Wierd!"};	// no leak
 	if (x < 200) return; 								// no leak
 	//...
+}
 ```
++ `shared_ptr` provides a form of garbage collection
+	* But I'm not sharing anything!
++ A `std::unique_ptr` releases its object at when it goes out of scope
+```cpp
+void f(int n, int x) {
+	auto p = make_unique<Gadget>(n);
+	//...
+	if (x < 100) throw std::runtime_error("Wierd!");
+	if (x < 200) return;
+	//...
+}
+```
++ This is simple and cheap
+	* No more expensive than a "plain old pointer"
