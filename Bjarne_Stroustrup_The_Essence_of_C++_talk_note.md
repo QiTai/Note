@@ -166,4 +166,24 @@ class Matrix {
 		+ C++11 specifies a GC interface
 		+ Can still leak non-memory resources
 
-	
+
+### Range-for, auto, and move ###
++ As ever, what matters is how features work in combination
+```cpp
+template<typename C, typename V>
+vector<Value_type<C>* > find_all(C& c, V v) 	//find all occurrences of v in c
+{
+	vector<Value_type<C>*> res;
+	for (auto& x : c)
+		if (x == v)
+			res.push_back(&x);
+	return res;
+}
+
+string m{"Mary had a little lamb"};
+for (const auto p : find_all(m, 'a')) 		// p is a char*
+	if (*p != 'a')
+		cerr << "string bug!\n";
+```		
+
+### 50:00 ###
