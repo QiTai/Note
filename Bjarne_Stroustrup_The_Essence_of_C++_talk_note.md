@@ -7,6 +7,7 @@ void f(int n, int x) {
 	if (x < 200) return;								// leak
 	//...
 	delete p;											// I want my garbage collector
+}
 ```
  + garbage collection would not release non-memory resources
 
