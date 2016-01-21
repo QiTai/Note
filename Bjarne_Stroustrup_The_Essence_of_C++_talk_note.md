@@ -296,3 +296,19 @@ void sort(__S & c);
 ```cpp
 [](Sortable& c){ sort(begin(c), end(c)); }
 ```
+
+# Error handling is simple (and fast)
+```cpp
+template<Sortable Cont> 	// Sortable is a sequence with random access
+void sort(Cont& container);
+
+vector<double> vec{1.2, 3.4, 0.5, -1.2};
+list<int> lst{1, 3, 4, 5};
+
+sort(vec);	//OK: a vector is Sortable
+sort(lst); 	//Error at (this) point of use: Sortable requires random access
+```
+
++ **Actual** error message
+	* error:'list<int>' doesn't satisfy the constraint 'Sortable'
++ Additional information upon request
