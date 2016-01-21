@@ -298,7 +298,7 @@ void sort(__S & c);
 [](Sortable& c){ sort(begin(c), end(c)); }
 ```
 
-# Error handling is simple (and fast)
+### Error handling is simple (and fast)
 ```cpp
 template<Sortable Cont> 	// Sortable is a sequence with random access
 void sort(Cont& container);
