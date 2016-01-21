@@ -223,3 +223,36 @@ for (const auto p : find_all(m, 'a')) 		// p is a char*
 	* Much More
 + Compile-time duck typing
 	* Leading to template metaprogramming
+
+
+### Algorithm and Function Objects###
+```cpp
+void g(vector<string> &vs) {
+	auto p = find_if(vs.begin(), vs.end(), Less_than{"Griffin"});
+}
+```
++ General function object
+	* can carry state
+	* easily inlined(close to optimally efficient)
+```cpp
+struct Less_than {
+	string s;
+	Less_than(const string& ss) : s{ss} { }
+	bool operator()(const string& v) const { return v < s;}
+};
+```
++ Lambda notation
+	* we can let the compiler write the function object for us
+	```cpp
+	auto p = find_if(vs.begin(), vs.end(), [](const string& v) { return v < "Griffin"; } );
+	```
++ The implementation is trivial
+```cpp
+template<typename Iter, typename Predicate>
+Iter find_if(Iter first, Iter last, Predicate pred) { 
+// find first p in [first:last) so that pred(*p) 
+	while (first != last && !pred(*first))
+		++first;
+	return first;
+}
+```
