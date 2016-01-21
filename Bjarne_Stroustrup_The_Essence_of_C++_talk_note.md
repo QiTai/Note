@@ -313,3 +313,13 @@ sort(lst); 	//Error at (this) point of use: Sortable requires random access
 + **Actual** error message
 	* error:'list<int>' doesn't satisfy the constraint 'Sortable'
 + Additional information upon request
+
+
+### "Paradigms" ###
++ Much of the distinction between object-oriented programming, generic programming, and "conventional programming" is an illusion
+```cpp
+// is this OOP, GP, or conventional?
+void draw_all(Container& c) require Same_type<Value_type<Container>, Shape*>() {
+	for_each(c, [](Shape* p) { p->draw(); } );
+}
+```
