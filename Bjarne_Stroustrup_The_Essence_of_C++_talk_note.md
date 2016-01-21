@@ -124,7 +124,7 @@ Matrix res = a + b;
 + Define move a construtor for Matrix
 	+ don't copy, "steal the representation"
 
-+ Direct support in C++ 11: **Move Constructor** *To devel into*
++ Direct support in C++ 11: **Move Constructor** *To devel into* --->
 ```cpp
 class Matrix {
 	Representation rep;
@@ -266,3 +266,33 @@ void sort(Seq& s, Pred p) {
 }
 ```
 
+### C++14 Concepts *To devel into*---->
++ Duck typing isn't good enough
++ We need better-specified interfaces to templates
+	* State intent
+	* Specify requirements for template arguments
++ A concept is a predicate on a set of types and values
+```cpp
+template<typename Cont>
+requires Sortable<Cont>()	// Sortable is a Sequence with random access
+void sort(Cont& container);
+```
++ We can say
+```cpp
+void sort(Sortable& c);
+```
++ It means
+```cpp
+template<Sortable __S>
+void sort(__S &c);
+```
++ Which means
+```cpp
+template<typename __S>
+	require Sortable<__S>()
+void sort(__S & c);
+```
++ Useful for lambdas
+```cpp
+[](Sortable& c){ sort(begin(c), end(c)); }
+```
