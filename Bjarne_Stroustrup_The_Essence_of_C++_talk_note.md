@@ -256,3 +256,13 @@ Iter find_if(Iter first, Iter last, Predicate pred) {
 	return first;
 }
 ```
+### Container algorithm ###
++ Applying an alg. to a half-open sequence [b:e) is general
++ The C++ standard offers algorithms on [b:e)
+```cpp
+template<typename Seq, typename Pred>
+void sort(Seq& s, Pred p) {
+	std::sort(begin(s), end(s), p);
+}
+```
+
