@@ -5,6 +5,7 @@
 # To Read
  + Operating System Concepts
  + More Effective C++/ Effective C++(twice)
+ + A tour of C++
  + 黑客与画家
 
 # Website
