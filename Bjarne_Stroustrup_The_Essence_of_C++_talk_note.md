@@ -186,4 +186,40 @@ for (const auto p : find_all(m, 'a')) 		// p is a char*
 		cerr << "string bug!\n";
 ```		
 
-### 50:00 ###
+### OOP/Inheritance ###
++ carries cost
+	* Indirect function calls (virtual functions)
+		+ ~25% overhead over ordinary function calls
+		+ Worse: doesn't inline well
+	* Objects must be on the free store (in dynamic memory) 
+		+ Allocation / deallocation
+		+ Indirect access to objects
+		+ Memory management of those objects
+			* Not Hard: Use unique_ptr, shared_ptr, or owning containers
+		+ Great coupling between program parts
+		+ Designing good interfaces (base classes) requires foresight
++ Inheritance is seriously and systematically overused and misused
+
+
+### Generic Programming: Templates###
++ 1980 Use Macros to express generic types and functions
++ 1987 (and current) aims:
+	* Extremely general/flexible
+	* Zero-overhead
+		+ vector/Matrix/...to compete with C arrays
+	* Well-specified interface
+		+ Implying overheading, good error messages, and maybe seperate compilation
++ "two out of three ain't bad" (The first two)
+	* But it isn't really good either
+	* kept Bjarne Stroustrup working for 20+ years
+### Templates ###
++ A massive success in C++98, better in C++11, better still in C++14
+	* STL containers
+	```cpp
+	template<typename T> class vector{ };
+	```
+	* STL alg.
+		`sort(v.begin(), v.end());`
+	* Much More
++ Compile-time duck typing
+	* Leading to template metaprogramming
