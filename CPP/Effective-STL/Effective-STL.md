@@ -866,9 +866,30 @@ namespace std{
 + 函数指针参数抑制了内联机制，也解释了一个长期以来C程序员都不愿接受的现实：C++的`sort`算法就性能而言总是优于C的`qsort`。
 
 ### 47: 避免产生"只写型"(write-only)的代码
++ 举个例子
+```cpp
+vector<int> v;
+int x, y;
+v.erase(
+    remove_if(find_if(v.rbegin(), v.rend(), 
+                      bind2nd(greater_equal<int>(), y)).base(),
+              v.end(),
+              bind2nd(less<int>(), x)),
+    v.end());
+// 上面这个例子就不太好,重构如下
+typedef vector<int>::iterator VecIntIter;
+VecIntIter rangeBegin = find_if(v.rbegin(), v.rend(), 
+bind2nd(greater_equal<int>(), y)).base();
+v.erase(remove_if(rangeBegin(), v.end(), bind2nd(less<int>(), x)), v.end());
+```
++ 代码被阅读的次数远远大于它被编写的次数,可读性一定要好
 
 ### 48: 总是包含(#include)正确的头文件
++ 重点：STL的头文件
+
+![](Img/48_1.png)
 
 ### 49: 学会分析与STL相关的编译器诊断信息
++ 脑中替换掉繁琐的类型定义串
 
 ### 50: 熟悉与STL相关的Web站点
