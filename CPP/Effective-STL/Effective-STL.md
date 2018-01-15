@@ -39,7 +39,7 @@ list1.splice(
 );
 ```
 
-### 5: 区间成员函数优先于与之对应的单元素成员函数
+### 5: 区间成员函数优先于与之对应的单元素成员函数
 + 使v1的内容和v2的后半部分相同的最简单操作是:
 ```cpp
 v1.assign(v2.begin() + v2.size() / 2, v2.end())
@@ -64,7 +64,7 @@ list<int> data(istream_iterator<int>(dataFile),
 ```cpp
 list<int> data((istream_iterator<int>(dataFile)),
                istream_iterator<int>());
-//更好的方法是在对data的声明中避免使用匿名的istream_iterator对象(尽管使用匿名对象是一种趋势，但此处为了工作正常，是需要付出点代价的)
+//更好的方法是在对data的声明中避免使用匿名的istream_iterator对象(尽管使用匿名对象是一种趋势，但此处为了工作正常，是需要付出点代价的)
 ifstream dataFile("inits.data");
 istream_iterator<int> dataBegin(dataFile);
 istream_iterator<int> dataEnd;
@@ -146,7 +146,7 @@ auto_ptr<Widget> pw2(pw1); // pw2指向pw1的Widget,pw1被置为NULL
 + 要删除容器中满足特定判别式（条件）的所有对象
     + 容器是`vector, string, deque`,则使用`erase-remove_if`
     ```cpp
-    bool badValue(int x);
+    bool badValue(int x);
     c.erase(remove_if(c.begin(), c.end(), badValue),        c.end());
     ```
     + 容器是`list`,用`remove_if`
@@ -231,7 +231,7 @@ if (first5 != v.end()) {
     *first5 = 0;
 }
 ```
-+ 把以上代码变成线程安全
++ 把以上代码变成线程安全
 ```cpp
 template<typename Container>
 class Lcok {
@@ -276,7 +276,7 @@ for (int i = 1; i <= 1000; ++i)
 ### 16: 了解如何把`vector`和`string`数据传给旧的API
 ```cpp
 void doSomething(const int* pInts, size_t numInts);
-// 可以如下,用&v[0],不要用v.begin()
+// 可以如下,用&v[0],不要用v.begin()
 if (!v.empty()) {
     doSomething(&v[0], v.size());
 }
@@ -347,7 +347,7 @@ public:
 !c.key_comp()(x, y) && !c.key_comp()(y, x)
 ```
 
-### 20: 为包含指针的关联容器指定比较类型
+### 20: 为包含指针的关联容器指定比较类型
 + 假设有一个包含`string*`的`set`,把动物的名字插入到该集合,如果希望遍历时按照字典顺序输出，有以下做法:
 ```cpp
 struct StringPrtLess:
@@ -388,8 +388,8 @@ s.insert(10); //从道理上讲，这一次的insert应该失败，但是由于�
 ``` 
 + 比较函数的返回值表明的是按照该函数定义的排列顺序，一个值是否在另一个之前。相等的值从来不会有前后顺序关系，所以，对于相等的值，比较函数应当返回false.
 
-### 22: 切勿直接修改`set`或`multiset`中的键
-+ `map`和`multimap`的键是`const`,而`set`和`multiset`不是,但是仍然记住不要改变键部分--元素的这部分会影响容器的排序性。如果改变了这部分内容，那么你可能会破坏该容器，再使用该容器将导致不确定的结果
+### 22: 切勿直接修改`set`或`multiset`中的键
++ `map`和`multimap`的键是`const`,而`set`和`multiset`不是,但是仍然记住不要改变键部分--元素的这部分会影响容器的排序性。如果改变了这部分内容，那么你可能会破坏该容器，再使用该容器将导致不确定的结果
 + 如果STL平台中`set`的键及非键成分均不允许修改,正确方式如下:先删除，再添加
 ```cpp
 EmpIDSet se;
@@ -474,7 +474,7 @@ if (range.first != range.second) ...
 sort(vd.begin(), vd.end(), DataCompare());
 ```
 
-### 24: 当效率至关重要的时候，请在`map::operator[]`和`map::insert`之间谨慎选择
+### 24: 当效率至关重要的时候，请在`map::operator[]`和`map::insert`之间谨慎选择
 + 如果要更新一个已有的映射元素，则应该优先选择`operator[]`；但如果要添加一个新的元素，那么最好还是选择`insert`
 + 自己写一个兼具上面两种功能的接口:
 ```cpp
@@ -524,8 +524,8 @@ distance(InputIterator first, InputIterator last);
 ```
 + 此方法的效率: vector,string, deque是常数时间; 对于双向迭代器是线性时间;这也进一步说明26条的合理性
 
-### 28：正确理解由`reverse_iterator`的`base()`成员函数所产生的`iterator`的用法 
-+ 对于如下代码的`iterator`的分布
+### 28：正确理解由`reverse_iterator`的`base()`成员函数所产生的`iterator`的用法 
++ 对于如下代码的`iterator`的分布
 ```cpp
 vector<int> v;
 v.reserve(5);
@@ -561,8 +561,8 @@ string fileData((istream_iterator<char>(inputFile)),
 + 更好的方式如下：
 ```cpp
 ifstream inputFile("interestingData.txt");
-string fileData((istreambuf_iterator<char>(inputFile)),
-                istreambuf_iterator<char>());
+string fileData((istreambuf_iterator<char>(inputFile)),
+                istreambuf_iterator<char>());
 ```
 + 会高效很多，不同于`istream_iterator`使用`operatro>>`从输入流的缓冲区中读取下一个字符,而`istreambuf_iterator`直接从流的缓冲区中读取下一个字符`
 
@@ -766,7 +766,7 @@ float product = accumulate(vf.begin(), vf.end(), 1.0f, multiplies<float>());
 ### 38: 遵循按值传递的原则来设计函数子类
 + 无论是C还是C++，都不允许将一个函数作为参数传递给另一个函数，相反，你必须传递函数指针
 + 函数指针是按值传递的
-+ STL函数对象是函数指针的一种抽象和建模形式，所以，按照惯例，在STL中，函数对象在函数之间来回传递也是按值传递的,如下for_each算法
++ STL函数对象是函数指针的一种抽象和建模形式，所以，按照惯例，在STL中，函数对象在函数之间来回传递也是按值传递的,如下for_each算法
 ```cpp
 template<class InputIterator,
          class Function>
@@ -800,10 +800,10 @@ public:
 
 ### 39: 确保判别式是"纯函数"
 + 一个判别式(predicate)是一个返回值为bool类型（或者可以隐式地转换为bool类型）的函数.
-+ 一个纯函数(pure function)是指返回值仅仅依赖于其参数的函数.
-+ 判别式类(predicate class)是一个函数子类,它的operator()函数是一个判别式，**STL中凡是能够接受判别式的地方，就可以接受一个真正的判别式，也可以接受一个判别式类的对象**.
++ 一个纯函数(pure function)是指返回值仅仅依赖于其参数的函数.
++ 判别式类(predicate class)是一个函数子类,它的operator()函数是一个判别式，**STL中凡是能够接受判别式的地方，就可以接受一个真正的判别式，也可以接受一个判别式类的对象**.
 + 反例这里略
-+ 为了避免在这种语言实现细节上栽跟头，最简单方法在判别式中，将operator()函数声明为const,const成员函数不能修改类的成员数据,然而即使是const成员函数，也可以访问mutable数据成员,非const的局部static对象,非const的类static对象，名字空间域中的非const对象以及非const的全局对象,所以这些都是要避免的。
++ 为了避免在这种语言实现细节上栽跟头，最简单方法在判别式中，将operator()函数声明为const,const成员函数不能修改类的成员数据,然而即使是const成员函数，也可以访问mutable数据成员,非const的局部static对象,非const的类static对象，名字空间域中的非const对象以及非const的全局对象,所以这些都是要避免的。
 
 ### 40: 若一个类是函数子，则应使它可配接
 + 先从代码看起
@@ -821,7 +821,7 @@ widgetPtrs.end(), not1(ptr_fun(isInteresting))); // 正确；但是从C++11开�
 + 本节的概念可以学习，然后这些函数均已在C++11中过时，C++17中移除,其中`ptr_fun`被`function`取代，`mem_fun,mem_fun_ref`被`mem_fn`取代
 
 ### 42: 确保`less<T>与operator<`具有相同的语义
-+ 大多数情况下你应该有比特化std模板更好的选择，但是在偶尔的情形下，这样做也是合理的。例如，智能指针的作者通常希望他们的类能够像C++内置指针一样进行排序，所以，针对智能指针类的std::less特化版本并不少见
++ 大多数情况下你应该有比特化std模板更好的选择，但是在偶尔的情形下，这样做也是合理的。例如，智能指针的作者通常希望他们的类能够像C++内置指针一样进行排序，所以，针对智能指针类的std::less特化版本并不少见
 ```cpp
 namespace std{
     template<typename T>
