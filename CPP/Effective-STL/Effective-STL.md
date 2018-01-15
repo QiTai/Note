@@ -491,7 +491,7 @@ efficientAddOrUpdate(MapType& m,
         return Ib;
     } else {
         typedef typename MapType::value_type MVT;
-        // 此处使用了"提示"形式的`insert`
+        // 此处使用了"提示"形式的insert
         return m.insert(Ib, MVT(k, v));
     }
 }
@@ -546,7 +546,7 @@ vector<int>::iterator i(ri.base());
 + 如果要在一个`reverse_iterator ri`指定位置上插入新元素，则只需在`ri.base()`位置处插入元素即可。对插入操作而言，`ri`和`ri.base`是等价的，`ri.base()`是真正与`ri`对应的`iterator`.
 + 如果要在一个`reverse_iterator ri`指定的位置上删除一个元素，则需要在`ri.base()`前面的位置上执行删除操作。对于删除操作而言，`ri和ri.base()`是不等价的，`ri.base()`不是于`ri`对应的`iterator`，而应该采用下面方式：
 ```cpp
-v.erase((++ri).base()); // 不要用v.erase(--ri.base());
+v.erase((++ri).base()); // 不要用v.erase(--ri.base());C和C++都规定了从函数返回的指针不应该被修改，所以，如果你的STL平台上string和vector的iterator是指针的话，那么，类似--ri.base()这样的表达式就无法通过编译
 ```
 
 ### 29: 对于逐个字符的输入请考虑使用`istreambuf_iterator`
@@ -564,7 +564,7 @@ ifstream inputFile("interestingData.txt");
 string fileData((istreambuf_iterator<char>(inputFile)),
                 istreambuf_iterator<char>());
 ```
-+ 会高效很多，不同于`istream_iterator`使用`operatro>>`从输入流的缓冲区中读取下一个字符,而`istreambuf_iterator`直接从流的缓冲区中读取下一个字符`
++ 会高效很多，不同于`istream_iterator`使用`operatro>>`从输入流的缓冲区中读取下一个字符,而`istreambuf_iterator`直接从流的缓冲区中读取下一个字符
 
 # 第五章 算法
 ### 30: 确保目标区间足够大
@@ -660,7 +660,7 @@ int ciStringCompareImpl(const string &s1,
     typedef pair<string::const_iterator,
                  string::const_iterator> PSCI;
     PSCI p = mismatch(s1.begin(), s1.end(), s2.begin(),
-             not2(ptr_fun(ciCharCompare)));
+             not2(ptr_fun(ciCharCompare))); // 在C++11之后,换成not2(std::ref(ciCharCompare))或not2(std::function<int(char, char)>(ciCharCompare))
     if (p.first == s1.end()) {
         if (p.second == s2.end()) return 0;
         else return -1;
@@ -811,7 +811,7 @@ public:
 list<Widget*> widgetPtrs;
 bool isInteresting(const Widget* pw);
 list<Widget*>::iterator i = find_if(widgetPtrs.begin(), widgetPtrs.end(), isInteresting); // 正确
-list<Widget*>::iterator i = find_if(widgetPtrs.begin(), widgetPtrs.end(), not1(isInteresting)); // 不能编译,因为isInterestin不是可配接的
+list<Widget*>::iterator i = find_if(widgetPtrs.begin(), widgetPtrs.end(), not1(isInteresting)); //不能编译,因为isInterestin不是可配接的
 list<Widget*>::iterator i = find_if(widgetPtrs.begin(), 
 widgetPtrs.end(), not1(ptr_fun(isInteresting))); // 正确；但是从C++11开始ptr_fun已经被废弃了，用std::function
 ```
@@ -887,7 +887,7 @@ v.erase(remove_if(rangeBegin(), v.end(), bind2nd(less<int>(), x)), v.end());
 ### 48: 总是包含(#include)正确的头文件
 + 重点：STL的头文件
 
-![](Img/48_1.png)
++ ![](Img/48_1.png)
 
 ### 49: 学会分析与STL相关的编译器诊断信息
 + 脑中替换掉繁琐的类型定义串
