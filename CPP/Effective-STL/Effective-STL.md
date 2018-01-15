@@ -147,13 +147,13 @@ auto_ptr<Widget> pw2(pw1); // pw2指向pw1的Widget,pw1被置为NULL
     + 容器是`vector, string, deque`,则使用`erase-remove_if`
     ```cpp
     bool badValue(int x);
-    c.erase(remove_if(c.begin(), c.end(), badValue),        c.end());
+    c.erase(remove_if(c.begin(), c.end(), badValue), c.end());
     ```
     + 容器是`list`,用`remove_if`
     ```cpp
     c.remove_if(badValue); 
     ```
-    + 容器是标准关联容器,使用`remove_copy_if和swap`,或者写一个循环来遍历容器中的元素，记住当把迭代器传给`erase`时，要对它*后缀递增*
+    + 容器是标准关联容器,使用`remove_copy_if和swap`,或者写一个循环来遍历容器中的元素，记住当把迭代器传给`erase`时，要对它*后缀递增*
     ```cpp
     // first way
     AssocContainer<int> c;
@@ -173,7 +173,7 @@ auto_ptr<Widget> pw2(pw1); // pw2指向pw1的Widget,pw1被置为NULL
     }
     ```
 + 要在循环内部做某些（除了删除对象之外的）操作
-    + 标准序列容器,则写一个循环来遍历容器中的元素，记住每次调用`erase`时，要用它的返回值更新迭代器
+    + 标准序列容器,则写一个循环来遍历容器中的元素，记住每次调用`erase`时，要用它的返回值更新迭代器
     ```cpp
     for (SeqContainer<int>::iterator i = c.begin();
         i != c.end();) {
@@ -218,7 +218,7 @@ public:
 
 typedef vector<double, SharedMemoryAllocator<double> > SharedDoubleVec;
 
-SharedDoubleVec v; //创建一个vector,其元素位于共享内存中
+SharedDoubleVec v; //创建一个vector,其元素位于共享内存中
 ```
 
 ### 12. 切勿对STL容器的线程安全性有不切实际的依赖
@@ -259,7 +259,7 @@ vector<int> v;
 ### 13: `vector`和`string`优先于动态分配的数组
 
 ### 14: 使用`reserve`来避免不必要的重新分配
-+ 为了避免重新分配过程中的额外开销(包括原内存的分配和释放,对象的复制和析构，迭代器、指针和引用的失效),如下代码
++ 为了避免重新分配过程中的额外开销(包括原内存的分配和释放,对象的复制和析构，迭代器、指针和引用的失效),如下代码
 ```cpp
 vector<int> v;
 for (int i = 1; i <= 1000; ++i) 
@@ -386,7 +386,7 @@ set<int, less_equal<int> > s;
 s.insert(10);
 s.insert(10); //从道理上讲，这一次的insert应该失败，但是由于违反了准则，这一次仍然能够插入，因为!(10A <= 10B) && !(10B <= 10A)
 ``` 
-+ 比较函数的返回值表明的是按照该函数定义的排列顺序，一个值是否在另一个之前。相等的值从来不会有前后顺序关系，所以，对于相等的值，比较函数应当返回false.
++ 比较函数的返回值表明的是按照该函数定义的排列顺序，一个值是否在另一个之前。相等的值从来不会有前后顺序关系，所以，对于相等的值，比较函数应当返回false.
 
 ### 22: 切勿直接修改`set`或`multiset`中的键
 + `map`和`multimap`的键是`const`,而`set`和`multiset`不是,但是仍然记住不要改变键部分--元素的这部分会影响容器的排序性。如果改变了这部分内容，那么你可能会破坏该容器，再使用该容器将导致不确定的结果
@@ -411,7 +411,7 @@ if (i != se.end()) {
  
 + 在保证上述情形下,由于`vector`所用的空间大小少,以及平衡二叉树不能保证的引用局域性,使用排序的`vector`可能比查找标准关联容器更快一些.
 
-+ 查找操作几乎从不跟插入和删除操作混在一起时，使用排序的vector代替关联容器才是合理的
++ 查找操作几乎从不跟插入和删除操作混在一起时，使用排序的vector代替关联容器才是合理的
 ```cpp
 // 设置阶段
 vector<Widget> vw;
@@ -557,7 +557,7 @@ inputFile.unset(ios::skipws); // disable the skipping of whitespace in inputFile
 string fileData((istream_iterator<char>(inputFile)),
                 istream_iterator<char>());
 ```
-+ 但是由于`istream_iterator`内部使用的`operator>>`函数实际上执行了格式化的输入，每调用一次`operator>>`操作符，都要执行很多附加的操作,效率不高
++ 但是由于`istream_iterator`内部使用的`operator>>`函数实际上执行了格式化的输入，每调用一次`operator>>`操作符，都要执行很多附加的操作,效率不高
 + 更好的方式如下：
 ```cpp
 ifstream inputFile("interestingData.txt");
@@ -851,9 +851,9 @@ namespace std{
 ### 44: 容器的成员函数优于同名的算法
 + 成员函数往往速度更快
 + 成员函数与容器(特别是关联容器)结合的更加紧密,比如`find,count,lower_bound`使用相等性，而关联容器的相应成员函数使用等价性来比较，可参考条款9
-+ 对于`map和multimap`来讲,`count,find,lower_bound,upper_bound,equal_range`成员函数是使用键来比较，而显然，算法是使用`pair`来比较
++ 对于`map和multimap`来讲,`count,find,lower_bound,upper_bound,equal_range`成员函数是使用键来比较，而显然，算法是使用`pair`来比较
 + 对于`list`,专门为list容器量身定做的成员函数无需复制任何对象副本，而如果用算法则需要不停地复制对象，降低效率
-+ 特别重要的是：`list`成员函数的行为与其同名的算法还存在不同(见32)，`remove,remove_if,unique`在`list`是直接删除了元素的，而同名算法没有;`sort`算法不能用于`list`,因为`list::iterator`是双向迭代器，而`sort`要求随机迭代器,因此只能用`list::sort`;`list::merge`是会修改链表本身的，同`merge`算法不允许修改其源区间不同
++ 特别重要的是：`list`成员函数的行为与其同名的算法还存在不同(见32)，`remove,remove_if,unique`在`list`是直接删除了元素的，而同名算法没有;`sort`算法不能用于`list`,因为`list::iterator`是双向迭代器，而`sort`要求随机迭代器,因此只能用`list::sort`;`list::merge`是会修改链表本身的，同`merge`算法不允许修改其源区间不同
 + 几乎可以肯定的讲，成员函数的性能更为优越，而且更能够与容器的一贯行为保持一致
 
 ### 45: 正确区分`count, find, binary_search, lower_bound, upper_bound和equal_range`
