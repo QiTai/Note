@@ -887,7 +887,7 @@ v.erase(remove_if(rangeBegin(), v.end(), bind2nd(less<int>(), x)), v.end());
 ### 48: 总是包含(#include)正确的头文件
 + 重点：STL的头文件
 
-+ ![](Img/48_1.png)
++ ![参考](Img/48_1.png)
 
 ### 49: 学会分析与STL相关的编译器诊断信息
 + 脑中替换掉繁琐的类型定义串
