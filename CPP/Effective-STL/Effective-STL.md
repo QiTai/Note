@@ -18,7 +18,7 @@ WCIterator it = find(cw.begin(), cw.end(), bestWidget);
 ### 3: 确保容器中的对象副本正确而高效
 + 进去的是副本，出来的也是副本(copy in, copy out)，这是STL的工作方式
 + "剥离"问题意味着向基类对象的容器插入派生类对象几乎总是错误的
-+ 是复制动作高效、正确，并防止剥离问题发生的一个简单办法是使容器包含指针而不是对象,但是指针的容器也有令人头疼的与STL相关的问题，这个时候**smart pointer**是一个很好的选择
++ 使复制动作高效、正确，并防止剥离问题发生的一个简单办法是使容器包含指针而不是对象,但是指针的容器也有令人头疼的与STL相关的问题，这个时候**smart pointer**是一个很好的选择
 ```cpp
 // instead of
 Widget w[maxNumWidgets]; // 会立即创建出maxNumWidgets个Widget对象
@@ -111,7 +111,7 @@ void doSomething() {
 + 以上方式如果在for_each调用前发生异常，仍然发生资源泄露,进一步改善依赖智能指针
 ```cpp
 void doSomething() {
-    typedef boost::shared_ptr<Widget> SPW;
+    typedef std::shared_ptr<Widget> SPW;
     vector<SPW> vwp;
     for (int i = 0; i < SOME_MAGIC_NUMBER; ++i)
         vwp.push_back(SPW(new Widget));
@@ -136,7 +136,7 @@ auto_ptr<Widget> pw2(pw1); // pw2指向pw1的Widget,pw1被置为NULL
     + 容器是`list`,则使用`remove`
     ```cpp
     list<int> c;
-    c.erase(1963);
+    c.remove(1963);
     ```
     + 容器是关联容器(`set/multiset/map/multimap`),使用`erase`成员函数
     ```cpp
@@ -825,13 +825,13 @@ widgetPtrs.end(), not1(ptr_fun(isInteresting))); // 正确；但是从C++11开�
 ```cpp
 namespace std{
     template<typename T>
-    struct less<boost::shared_ptr<T> >:
-        public binary_function<boost::shared_ptr<T>,
-                               boost::shared_ptr<T>,
+    struct less<std::shared_ptr<T> >:
+        public binary_function<std::shared_ptr<T>,
+                               std::shared_ptr<T>,
                                bool> {
 
-        bool operator()(const boost::shared_ptr<T> &a,
-                        const boost::shared_ptr<T> &b) const {
+        bool operator()(const std::shared_ptr<T> &a,
+                        const std::shared_ptr<T> &b) const {
             return less<T*>()(a.get(), b.get());
         }
     };
