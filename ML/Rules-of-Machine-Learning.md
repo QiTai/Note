@@ -68,9 +68,39 @@ score as the value of a feature.
 required.
 
 ### Rule 13-Choose a simple, observable and attributable metric for your first objective.
++ **The ML objective should be something that is easy to measure and is a proxy for the “true” objective**
+
+### Rule 14-Starting with an interpretable model makes debugging easier
++ For example, in linear, logistic, or Poisson regression, there are subsets of the data where the average predicted expectation equals the average label (1 moment calibrated, or just calibrated) ???
++ However, remember when it comes time to choose which model to use, the decision matters more than the likelihood of the data given the model???
+
+### Rule 15-Separate Spam Filtering and Quality Ranking in a Policy Layer
++ Keep in mind, filtering spam in search results should probably be more aggressive than filtering spam in email. Spam filtering is a different story. You have to expect that the features that you need to generate will be constantly changing. 
++ Keep in mind, filtering spam in search results should probably be more aggressive than filtering spam in email messages. Also, it is a standard practice to remove spam from the training data for the quality
+classifier.
+
+## ML Phase II: Feature Engineering
++ After you have a working end to end system with unit and system
+tests instrumented, Phase II begins.
+### Rule 16-Plan to launch and iterate.
+
+### Rule 17-Start with directly observed and reported features as opposed to learned features.
 
 
+### Rule 18-Explore with features of content that generalizes across contexts.
++ If you provide those statistics to the learner, it can promote new posts that it has no data for in the context it is optimizing. YouTube Watch Next could use number of watches, or co-watches
+(counts of how many times one video was watched after another was watched) from YouTube search.
 
+### Rule 19-Use very specific feature when you can.
+
+### Rule 20-Combine and modify existing features to create new features in human understandable ways.
+
+### Rule 21-The number of feature weights you can learn in a linear model is roughly proportional to the amount of data you have
++ There are fascinating statistical learning theory results concerning the appropriate level of complexity for a model, but this rule is basically all you need to know.
+
+### Rule 22-Clean up features you are no longer using
++ Keep coverage in mind when considering what features to add or keep. How many examples are covered by the feature? For example, if you have some personalization features, but only 8% of your users have any personalization features, it is not going to be very effective.
++ At the same time, some features may punch above their weight. For example, if you have a feature which covers only 1% of the data, but 90% of the examples that have the feature are positive, then it will be a great feature to add.
 
 
 
