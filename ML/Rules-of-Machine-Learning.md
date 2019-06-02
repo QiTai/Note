@@ -60,6 +60,15 @@ score as the value of a feature.
 
 ## Your First objective
 
++ You have many metrics, or measurements about the system that you care about, but your machine learning algorithm will often require a single objective, a number that your algorithm is “trying” to optimize.
+
+### Rule 12-Don’t overthink which objective you choose to directly optimize.
++ However, early in the machine learning process, you will notice them all going up, even those that you do not directly optimize. So, keep it simple and don’t think too hard about balancing different metrics when you can still easily increase all the metrics. Don’t take this rule too far though: do not confuse your objective with the ultimate health of the system.
++ And, if you find yourself increasing the directly optimized metric, but deciding not to launch, some objective revision may be
+required.
+
+### Rule 13-Choose a simple, observable and attributable metric for your first objective.
+
 
 
 
