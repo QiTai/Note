@@ -102,6 +102,25 @@ tests instrumented, Phase II begins.
 + Keep coverage in mind when considering what features to add or keep. How many examples are covered by the feature? For example, if you have some personalization features, but only 8% of your users have any personalization features, it is not going to be very effective.
 + At the same time, some features may punch above their weight. For example, if you have a feature which covers only 1% of the data, but 90% of the examples that have the feature are positive, then it will be a great feature to add.
 
+### Rule 23-You are not a typical end user
++ If you really want to have user feedback, use user experience methodologies.
+
+### Rule 24-Measure the delta between models
+
+### Rule 25-When choosing models, utilitarian performance trumps predictive power
++ If you are using it to rank documents, then the quality of the final
+ranking matters more than the prediction itself. Thus, if there is some change that improves log loss but degrades the performance of the system, look for another feature. When this starts happening
+more often, it is time to revisit the objective of your model.
+
+### Rule 26-Look for patterns in the measured errors, and create new features
++ On the other hand, if you try to create a feature based upon examples the system doesn’t see as mistakes, the feature will be ignored.
++ Once you have examples that the model got wrong, look for trends that are outside your current feature set.
++ For instance, if the system seems to be demoting longer posts, then add post length. Don’t be too specific about the features you add. If you are going to add post length, don’t try to guess what long means.
+just add a dozen features and the let model figure out what
+to do with them. That is the easiest way to get what you want.
+
+
+
 
 
 
