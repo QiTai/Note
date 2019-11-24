@@ -25,3 +25,41 @@ def to_bytes(bytes_or_str):
 + python3默认以UTF-8打开文件;python2默认以二进制打开文件
 
 
+### Item16: 考虑用生成器来改写直接返回列表的函数
+```python
+### 旧写法：
+def index_words(text):
+  result = []
+  if text:
+    result.append(0)
+  for index, letter in enumerate(text):
+    if letter == ' ':
+      result.append(index + 1)
+  return result
+### 新写法：
+def index_words_iter(text):
+  if text:
+    yield 0
+  for index, letter in enumerate(text):
+    if letter == ' ':
+      yield index + 1
+result = list(index_words_iter(address))
+```
+
+
+
+### Item21: 用只能以关键字形式指定的参数来确保代码明晰
++ 下面的*后面的参数必须以关键字形式调用
+```python
+def safe_division_c(number, divisor, *, ignore_overflow=False,
+                    ignore_zero_division=False):
+    #### something
+safe_division_c(1, 10**500, True, False) # Error
+safe_division_c(1, 0, ignore_zero_division=True) # OK
+```
+
+
+
+
+
+
