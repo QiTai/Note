@@ -141,7 +141,7 @@ auto_ptr<Widget> pw2(pw1); // pw2指向pw1的Widget,pw1被置为NULL
     + 容器是关联容器(`set/multiset/map/multimap`),使用`erase`成员函数
     ```cpp
     set<int> c;
-    c.erase(1963); 
+    c.erase(1963);
     ```
 + 要删除容器中满足特定判别式（条件）的所有对象
     + 容器是`vector, string, deque`,则使用`erase-remove_if`
@@ -887,7 +887,7 @@ v.erase(remove_if(rangeBegin(), v.end(), bind2nd(less<int>(), x)), v.end());
 ### 48: 总是包含(#include)正确的头文件
 + 重点：STL的头文件
 
-+ ![参考](Img/48_1.png)
++ 参考: ![](Img/48_1.PNG)
 
 ### 49: 学会分析与STL相关的编译器诊断信息
 + 脑中替换掉繁琐的类型定义串
