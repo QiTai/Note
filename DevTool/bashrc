@@ -1,0 +1,40 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# User specific aliases and functions
+test -s ~/blade/bladefunctions && . ~/blade/bladefunctions || true
+
+export LD_LIBRARY_PATH=/data/gcc-4.9.4/lib64:$HOME/software/usr/local/lib
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/software/usr/local/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:$HOME/software/usr/local/lib
+export PATH=/data/gcc-4.9.4/bin:$HOME/bin:$PATH
+
+alias vi='vim'
+alias bb='blade build '
+alias bt='blade test '
+alias uploadi='upload.py -i'
+alias gformat='clang-format.clang-format -style=google  -i '
+
+alias f='find . -name "*" | xargs grep -n --color '
+alias fxml='find . -name "*.xml" | xargs grep -n --colour '
+alias fcc='find . -name "*.cc" | xargs grep -n --colour '
+alias fconf='find . -name "*.conf" | xargs grep -n --colour '
+alias fcpp='find . -name "*.cpp" | xargs grep -n --colour '
+alias fb='find . -name "BUILD" | xargs grep -n --colour '
+alias fh='find . -name "*.h" | xargs grep -n --colour '
+alias fhpp='find . -name "*.hpp" | xargs grep -n --colour '
+alias fpy='find . -name "*.py" | xargs grep -n --colour '
+alias fp='find . -name "*.proto" | xargs grep -n --colour '
+alias fx='find . | xargs grep -n --colour '
+alias fxml='find . -name "*.xml"| xargs grep -n --colour '
+alias ftest='find . -name "*test.cc"| xargs grep -n --colour '
+alias fj='find . -name "*.java"| xargs grep -n --colour '
+alias fscala='find . -name "*.scala"| xargs grep -n --colour '
+alias fsh='find . -name "*.sh" | xargs grep -n --colour '
+
+export LC_ALL=zh_CN.UTF-8
+source $HOME/z.sh

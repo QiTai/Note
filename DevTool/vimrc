@@ -1,0 +1,121 @@
+" 去掉有关vi一致性模式，避免以前版本一些bug和局限，解决backspace不能使用的问题
+set nocompatible
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'derekwyatt/vim-scala'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set backspace=indent,eol,start
+set backspace=2
+
+"set background=dark
+"colorscheme desert
+" 打开语法高亮
+syntax enable
+" 开启文件类型侦查
+syntax on
+set nu
+set ruler
+" 输入的命令显示出来，看的清楚些
+set showcmd
+" 状态行显示的内容
+set statusline=%F%m%r%h%w\ [POS=%l,%v][%p%%]\ %{strftime(\"%Y/%m/%y\-\%H:%M\")}
+" 启动显示状态行1，总是显示状态行2
+set laststatus=2
+" 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4
+set tabstop=4
+" 设定自动缩进为2个字符，程序中自动缩进所使用的空白长度
+set shiftwidth=2 "2(for C++) 4(for Python)
+" 用空格代替tab
+set expandtab
+" 启用自动对齐功能，把上一行的对齐格式应用到下一行
+set autoindent
+" 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处
+set smartindent
+" 开启实时搜索功能
+set incsearch
+" 搜索不区分大小写
+set ic
+" 高亮搜索的字符串
+set hlsearch
+filetype indent on           " 针对不同的文件类型采用不同的缩进格式
+filetype plugin on           " 针对不同的文件类型加载对应的插件
+filetype plugin indent on    " 用自动补全，必须有
+" 显示匹配的括号
+set showmatch
+" 自动保存
+set autowrite
+" 突出显示当前行
+" set cursorline
+" 突出显示当前列
+" set cursorcolumn
+
+set smarttab
+
+" show tab as --->                                                           
+" show trailing space as -                                                   
+set listchars=tab:>-,trail:-                                                 
+set list
+
+" ctags
+set tags=tags; " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
+set tags+=./tags " add current directory's generated tags file
+set autochdir
+
+" taglist
+" 按F8按钮，在窗口的左侧出现taglist的窗口,像vc的左侧的workpace
+map <silent> <F9> :TlistToggle<cr>
+" :Tlist              调用TagList
+let Tlist_Show_One_File=1             " 只显示当前文件的tags
+let Tlist_Exit_OnlyWindow=1           " 如果Taglist窗口是最后一个窗口则退出Vim
+
+""""""""""""""""""""""""""""""""""""""""""""""
+"set colorcolumn=81
+"highlight ColorColumn ctermbg=grey guibg=lightgrey
+""""""""""""""""""""""""""""""""""""""""""""""
+"highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+"match OverLength /\%>80v.\+/
+
+"copyright add authomatically
+"add or update the header
+autocmd BufNewFile *.cc exec ":call FillCppFile()"
+autocmd BufNewFile *.h exec ":call FillHeaderFile()"
+"map <F4> :call AddHeader()<cr>'s
+function AddComment()
+  let author_name = $USER
+  call append(0, "// Copyright (c) ".strftime("%Y").", Tencent Inc.")
+  call append(1, "// All rights reserved.")
+  call append(2, "//")
+  call append(3, "// Author: Yan Chao <" . author_name . "@tencent.com>")
+  call append(4, "")
+endfunction
+function AddNamespaceBlock(begin)
+  call append(a:begin, "namespace gdt {")
+  call append(a:begin+1, "namespace creative {")
+  call append(a:begin+2, "")
+  call append(a:begin+3, "}  // namespace creative")
+  call append(a:begin+4, "}  // namespace gdt")
+endfunction
+function FillCppFile()
+  call AddComment()
+  call AddNamespaceBlock(5)
+  call cursor(8, 0)
+endfunction
+function FillHeaderFile()
+  let svn_root = "/data6/alanyan/svn/trunk/"
+  let full_guard_name = toupper(expand('%:p:gs/[^0-9a-zA-Z_]/_/g'))."_"
+  let guard_name = full_guard_name[strlen(svn_root):]
+  call AddComment()
+  call append(5, "#ifndef ".guard_name)
+  call append(6, "#define ".guard_name)
+  call append(7, "")
+  call AddNamespaceBlock(8)
+  call append(13, "")
+  call append(14, "#endif  // ".guard_name)
+  call cursor(11, 0)
+endfunction
